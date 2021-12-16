@@ -1,0 +1,185 @@
+#header {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 10px 0;
+	z-index: 9;
+
+	@include media('>=desktop') {
+		padding: 25px 0;
+		border: 0;
+	}
+
+	&.fixed-position {
+		background: #ea1d24;
+		box-shadow: 0 0 5px rgba($black, 0.4);
+	}
+
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.logo {
+		flex-shrink: 0;
+		width: 123px;
+
+		@include media('>=desktop') {
+			width: 123px;
+		}
+
+		img {
+			@include responsive-image;
+		}
+	}
+
+	.btn {
+		min-width: 150px;
+		margin: 0;
+
+		@include media('>=desktop') {
+			min-width: 120px;
+		}
+	}
+}
+
+#nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-y: auto;
+	transition: linear 0.3s;
+	visibility: hidden;
+	opacity: 0;
+	padding: 60px 15px;
+	background: rgba($black2, 1);
+
+	.nav-active & {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	@include media('>=desktop') {
+		display: flex;
+		flex-grow: 1;
+		flex-direction: inherit;
+		padding: 0 0 0 25px;
+		position: static;
+		visibility: visible;
+		opacity: 1;
+		overflow: visible;
+		background: none;
+	}
+}
+
+.main-nav {
+	@extend %listreset;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: 500;
+	text-align: center;
+	text-transform: capitalize;
+	margin: 0 0 20px;
+
+	@include media('>=desktop') {
+		display: flex;
+		flex-grow: 1;
+		flex-flow: row wrap;
+		justify-content: flex-end;
+		font-size: 14px;
+		line-height: 18px;
+		margin: 0 15px 0 0;
+	}
+
+	li {
+		padding: 10px;
+
+		@include media('>=desktop') {
+			padding: 0 20px;
+		}
+
+		&.active {
+			a {
+				color: $pink;
+			}
+		}
+	}
+
+	a {
+		color: $white;
+
+		&.anchor-active {
+			color: $pink;
+		}
+
+		&:hover {
+			color: $pink;
+		}
+	}
+}
+
+.nav-opener{
+  position: relative;
+  width: 35px;
+  height: 40px;
+  z-index: 99;
+ 
+  @include media('>=desktop') {
+    display: none;
+  }
+
+  &:before,
+  &:after,
+  span{
+    background: $white;
+    border-radius:4px;
+    position:absolute;
+    top:50%;
+    left:10%;
+    right:10%;
+    height:3px;
+    margin-top:-2px;
+    transition:all 0.2s linear;
+  }
+
+  &:before,
+  &:after{
+    content:'';
+    top:30%;
+  }
+
+  &:after {
+    top:70%;
+  }
+
+  .nav-active & { 
+  span {
+    opacity:0;
+  }
+
+  &:after,
+  &:before{
+    transform:rotate(45deg);
+    top:50%;
+    left:15%;
+    right:15%;
+  }
+
+  &:after{
+    transform:rotate(-45deg);
+  }
+
+  &:hover{
+    opacity:.9;
+    }
+  }
+}
